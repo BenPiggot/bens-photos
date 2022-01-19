@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bensphotos-dev-221232-authRole",
+      "UnauthRoleArn": "arn:aws:iam::292146897232:role/amplify-bensphotos-dev-221232-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::292146897232:role/amplify-bensphotos-dev-221232-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-bensphotos-dev-221232-deployment",
+      "UnauthRoleName": "amplify-bensphotos-dev-221232-unauthRole",
+      "StackName": "amplify-bensphotos-dev-221232",
+      "StackId": "arn:aws:cloudformation:us-west-2:292146897232:stack/amplify-bensphotos-dev-221232/cbffeee0-78ee-11ec-bbc7-0a5ef57d36f9",
+      "AmplifyAppId": "d1f8urtjpsofun"
+    }
+  }
+}
