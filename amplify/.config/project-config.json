@@ -6,9 +6,9 @@
     "framework": "react",
     "config": {
       "SourceDir": "src",
-      "DistributionDir": "build",
+      "DistributionDir": "public",
       "BuildCommand": "gatsby build",
-      "StartCommand": "npm start"
+      "StartCommand": "npm run start"
     }
   },
   "providers": [

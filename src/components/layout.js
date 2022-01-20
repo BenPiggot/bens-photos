@@ -12,6 +12,17 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "./layout.css"
 
+import { useState, useEffect } from 'react'
+import { Storage } from 'aws-amplify'
+
+Storage.configure({
+  customPrefix: {
+    public: '',
+    // protected: 'myProtectedPrefix/',
+    // private: 'myPrivatePrefix/'
+},
+})
+
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -22,6 +33,17 @@ const Layout = ({ children }) => {
       }
     }
   `)
+
+  const getPhotoList = async () => {
+    const list = await Storage.list('france/paris/');
+    console.log(list)
+    const testItem = await Storage.get(`${list[1].key}`, {download: true})
+    console.log(testItem)
+  }
+
+  useEffect(() => {
+    getPhotoList();
+  }, [])
 
   return (
     <>

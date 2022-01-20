@@ -5,6 +5,11 @@ import { StaticImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
+import Amplify from 'aws-amplify'
+import awsconfig from '../aws-exports'
+
+Amplify.configure(awsconfig)
+
 const IndexPage = () => (
   <Layout>
     <Seo title="Home" />
