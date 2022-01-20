@@ -34,11 +34,16 @@ const Layout = ({ children }) => {
     }
   `)
 
+  const [image, setImage] = useState(null)
+
   const getPhotoList = async () => {
     const list = await Storage.list('france/paris/');
     console.log(list)
     const testItem = await Storage.get(`${list[1].key}`, {download: true})
-    console.log(testItem)
+    console.log(testItem.Body)
+    let url = URL.createObjectURL(testItem.Body, {type : 'image/jpeg'})
+    console.log(url)
+    setImage(url)
   }
 
   useEffect(() => {
@@ -55,6 +60,7 @@ const Layout = ({ children }) => {
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
+        {image && <img src={image}/> }
         <main>{children}</main>
         <footer
           style={{
