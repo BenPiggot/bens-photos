@@ -13,14 +13,18 @@ import Header from "./header"
 import "./layout.css"
 
 import { useState, useEffect } from 'react'
-import { Storage } from 'aws-amplify'
+import Amplify, { Storage } from 'aws-amplify'
+import awsconfig from '../aws-exports'
+
+
+Amplify.configure(awsconfig)
 
 Storage.configure({
   customPrefix: {
     public: '',
     // protected: 'myProtectedPrefix/',
     // private: 'myPrivatePrefix/'
-},
+  },
 })
 
 const Layout = ({ children }) => {

@@ -24,7 +24,7 @@
       "function": {
         "bensphotos": {
           "deploymentBucketName": "amplify-bensphotos-dev-201159-deployment",
-          "s3Key": "amplify-builds/bensphotos-36745259564a714c4a49-build.zip"
+          "s3Key": "amplify-builds/bensphotos-75423835793631472b35-build.zip"
         }
       }
     }
