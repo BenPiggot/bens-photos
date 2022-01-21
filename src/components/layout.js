@@ -12,20 +12,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "./layout.css"
 
-import { useState, useEffect } from 'react'
-import Amplify, { Storage } from 'aws-amplify'
-import awsconfig from '../aws-exports'
-
-
-Amplify.configure(awsconfig)
-
-Storage.configure({
-  customPrefix: {
-    public: '',
-    // protected: 'myProtectedPrefix/',
-    // private: 'myPrivatePrefix/'
-  },
-})
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -38,25 +24,9 @@ const Layout = ({ children }) => {
     }
   `)
 
-  const [image, setImage] = useState(null)
-
-  const getPhotoList = async () => {
-    const list = await Storage.list('france/paris/');
-    console.log(list)
-    const testItem = await Storage.get(`${list[1].key}`, {download: true})
-    console.log(testItem.Body)
-    let url = URL.createObjectURL(testItem.Body, {type : 'image/jpeg'})
-    console.log(url)
-    setImage(url)
-  }
-
-  useEffect(() => {
-    getPhotoList();
-  }, [])
-
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Header siteTitle={'bens photos' || `Title`} />
       <div
         style={{
           margin: `0 auto`,
@@ -64,7 +34,6 @@ const Layout = ({ children }) => {
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        {image && <img src={image}/> }
         <main>{children}</main>
         <footer
           style={{
