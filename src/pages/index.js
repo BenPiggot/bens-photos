@@ -6,6 +6,7 @@ import { OutlinedInput, MenuItem, Select, InputLabel, FormControl,
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Image from "../components/image"
 
 import Amplify, { Storage } from 'aws-amplify'
 import awsconfig from '../aws-exports'
@@ -26,6 +27,7 @@ const IndexPage = () => {
   const [placeString, setPlaceString] = useState('');
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [magnifiedImage, setMagnifiedImage] = useState(null);
 
   const getPhotoList = async (place) => {
     if (images.length) {
@@ -34,16 +36,16 @@ const IndexPage = () => {
     setIsLoading(true);
     const list = await Storage.list(`${countryString}/${place}/`);
 
-    const promises = Promise.all(list.map(async(item) => {
+    const promises = list.map(async(item) => {
       const response = await Storage.get(`${item.key}`, {download: true})
       return URL.createObjectURL(response.Body, {type : 'image/jpeg'})
-    }))
-
-    promises.then(response => {
-      response.shift();
-      setIsLoading(false);
-      setImages(response);
     })
+
+    const data = await Promise.all(promises)
+    data.shift();
+    setIsLoading(false);
+    setImages(data);
+    
   }
 
   const handleCountryChange = (e) => {
@@ -56,6 +58,9 @@ const IndexPage = () => {
     getPhotoList(e.target.value);
   }
 
+  const handleImageMagnify = (idx) => {
+    setMagnifiedImage(idx);
+  }
 
   return (
     <Layout>
@@ -90,9 +95,10 @@ const IndexPage = () => {
         </FormControl>
       </div>
       <div>
-      { images.length ? images.map(url => {
+      { images.length ? images.map((url, idx) => {
+        let isMagnified = idx === magnifiedImage ? true : false;
         return (
-          <img style={{ maxHeight: '200px', maxWidth: '200px', height: 'auto', width: 'auto', padding: '10px', display: 'inline-flex'}} src={url} />
+          <Image url={url} isMagnified={isMagnified} handleImageMagnify={handleImageMagnify} idx={idx} />
         )
       }) : 
         isLoading && 
@@ -107,7 +113,7 @@ const IndexPage = () => {
         <Link to="/using-dsg">Go to "Using DSG"</Link>
       </p> */}
     </Layout>
-  )
-  }
+  ) 
+}
 
 export default IndexPage
