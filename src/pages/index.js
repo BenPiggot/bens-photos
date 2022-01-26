@@ -82,6 +82,7 @@ const IndexPage = () => {
           <InputLabel>Choose a Place</InputLabel>
           <Select
             style={{ width: '100%'}}
+            disabled={!countryString.length}
             value={placeString}
             label="Place"
             input={<OutlinedInput label="Choose a Place" />}
