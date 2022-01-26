@@ -16,12 +16,12 @@ const Image = (props) => {
     )
   }
   return (
-    <Tooltip followCursor title="Click image to expand" style={{ cursor: 'pointer '}}>
+    <Tooltip followCursor title="Click image to expand">
       <img 
         style={{ 
             maxHeight: '200px', maxWidth: '200px', 
             height: 'auto', width: 'auto', padding: '10px', 
-            display: 'inline-flex', cursor: "pointer"}} 
+            display: 'inline-flex'}} 
         src={props.url} 
         onClick={() => props.handleImageMagnify(props.idx )}
       />
