@@ -1,32 +1,38 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-bensphotos-dev-201159-authRole",
-      "UnauthRoleArn": "arn:aws:iam::292146897232:role/amplify-bensphotos-dev-201159-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::292146897232:role/amplify-bensphotos-dev-201159-authRole",
-      "Region": "us-west-2",
-      "DeploymentBucketName": "amplify-bensphotos-dev-201159-deployment",
-      "UnauthRoleName": "amplify-bensphotos-dev-201159-unauthRole",
-      "StackName": "amplify-bensphotos-dev-201159",
-      "StackId": "arn:aws:cloudformation:us-west-2:292146897232:stack/amplify-bensphotos-dev-201159/1ee4c050-79a7-11ec-aaa2-066f8d7ffaab",
-      "AmplifyAppId": "d2bid3ambiks80"
-    },
-    "categories": {
-      "auth": {
-        "bensphotos35557d33": {}
-      },
-      "storage": {
-        "bensphotos86e3289a": {
-          "bucketName": "global-photos",
-          "region": "us-west-2"
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-bensphotos-dev-201159-authRole",
+            "UnauthRoleArn": "arn:aws:iam::292146897232:role/amplify-bensphotos-dev-201159-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::292146897232:role/amplify-bensphotos-dev-201159-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-bensphotos-dev-201159-deployment",
+            "UnauthRoleName": "amplify-bensphotos-dev-201159-unauthRole",
+            "StackName": "amplify-bensphotos-dev-201159",
+            "StackId": "arn:aws:cloudformation:us-west-2:292146897232:stack/amplify-bensphotos-dev-201159/1ee4c050-79a7-11ec-aaa2-066f8d7ffaab",
+            "AmplifyAppId": "d2bid3ambiks80"
+        },
+        "categories": {
+            "auth": {
+                "bensphotos35557d33": {}
+            },
+            "storage": {
+                "bensphotos86e3289a": {
+                    "bucketName": "global-photos",
+                    "region": "us-west-2"
+                }
+            },
+            "function": {
+                "bensphotos": {
+                    "deploymentBucketName": "amplify-bensphotos-dev-201159-deployment",
+                    "s3Key": "amplify-builds/bensphotos-75423835793631472b35-build.zip"
+                }
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d2bid3ambiks80",
+                    "type": "cicd"
+                }
+            }
         }
-      },
-      "function": {
-        "bensphotos": {
-          "deploymentBucketName": "amplify-bensphotos-dev-201159-deployment",
-          "s3Key": "amplify-builds/bensphotos-75423835793631472b35-build.zip"
-        }
-      }
     }
-  }
 }

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Dialog } from '@mui/material';
+import { Dialog, Tooltip } from '@mui/material';
 
 const Image = (props) => {
   if (props.isMagnified) {
     return (
-      <Dialog open={props.isMagnified} fullWidth={true} maxWidth={'lg'} style={{ padding: '20px'}}>
+      <Dialog onBackdropClick={() => props.handleImageMagnify(null)} open={props.isMagnified} fullWidth={true} maxWidth={'lg'} style={{ padding: '20px'}}>
         <img 
           style={{ height: 'auto', width: 'auto', 
           marginBottom: '0', zIndex: 1000
@@ -16,14 +16,16 @@ const Image = (props) => {
     )
   }
   return (
-    <img 
-      style={{ 
-          maxHeight: '200px', maxWidth: '200px', 
-          height: 'auto', width: 'auto', padding: '10px', 
-          display: 'inline-flex'}} 
-      src={props.url} 
-      onClick={() => props.handleImageMagnify(props.idx )}
-    />
+    <Tooltip followCursor title="Click image to expand" style={{ cursor: 'pointer '}}>
+      <img 
+        style={{ 
+            maxHeight: '200px', maxWidth: '200px', 
+            height: 'auto', width: 'auto', padding: '10px', 
+            display: 'inline-flex', cursor: "pointer"}} 
+        src={props.url} 
+        onClick={() => props.handleImageMagnify(props.idx )}
+      />
+    </Tooltip>
   )
 };
 
