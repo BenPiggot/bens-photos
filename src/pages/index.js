@@ -89,7 +89,7 @@ const IndexPage = () => {
             onChange={handlePlaceChange}
           >
             <MenuItem value={'paris'}>Paris</MenuItem>
-            <MenuItem value={'chartres'}>Chartres</MenuItem>
+            <MenuItem value={'chartes'}>Chartres</MenuItem>
             <MenuItem value={'nantes'}>Nantes</MenuItem>
             <MenuItem value={'bordeaux'}>Bordeaux</MenuItem>
             <MenuItem value={'carcassone'}>Carcassone</MenuItem>
