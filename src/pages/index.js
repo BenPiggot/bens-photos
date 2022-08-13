@@ -66,7 +66,7 @@ const IndexPage = () => {
     <Layout>
       <Seo title="Home" />
       <div style={{ display: 'flex', marginBottom: '20px'}}>
-        <FormControl sx={{ m: 1, width: 250 }} style={{ minWidth: '25%', margin: '5px 10px'}}>
+        <FormControl sx={{ m: 1, width: 250 }} style={{ minWidth: '25%', margin: '5px 10px 5px 0px'}}>
           <InputLabel>Choose a Country</InputLabel>
           <Select
             style={{ width: '100%'}}
