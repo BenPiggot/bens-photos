@@ -4,10 +4,10 @@ import { Dialog, Tooltip } from '@mui/material';
 const Image = (props) => {
   if (props.isMagnified) {
     return (
-      <Dialog onBackdropClick={() => props.handleImageMagnify(null)} open={props.isMagnified} fullWidth={true} maxWidth={'lg'} style={{ padding: '20px'}}>
+      <Dialog onBackdropClick={() => props.handleImageMagnify(null)} BackdropProps={{style: {backgroundColor: 'rgba(0,0,0,0.85)'}}} open={props.isMagnified} maxWidth={'md'} sx={{ padding: '20px'}}>
         <img 
           style={{ height: 'auto', width: 'auto', 
-          marginBottom: '0', zIndex: 1000
+          marginBottom: '0', zIndex: 1000, maxHeight: '85vh'
           }} 
           src={props.url} 
           onClick={() => props.handleImageMagnify(null)}

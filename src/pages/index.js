@@ -1,12 +1,12 @@
 import * as React from "react"
 import { useState } from 'react'
-import { Link } from "gatsby"
 import { OutlinedInput, MenuItem, Select, InputLabel, FormControl,
   Skeleton, CircularProgress } from '@mui/material'
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Image from "../components/image"
+import { places } from "../fixtures/places"
 
 import Amplify, { Storage } from 'aws-amplify'
 import awsconfig from '../aws-exports'
@@ -76,6 +76,9 @@ const IndexPage = () => {
             onChange={handleCountryChange}
           >
             <MenuItem value={'france'}>France</MenuItem>
+            <MenuItem value={'sweden'}>Sweden</MenuItem>
+            <MenuItem value={'norway'}>Norway</MenuItem>
+            <MenuItem value={'finland'}>Finland</MenuItem>
           </Select>
         </FormControl>
         <FormControl sx={{ m: 1, width: 250 }} style={{ minWidth: '25%', margin: '5px 10px'}}>
@@ -88,18 +91,9 @@ const IndexPage = () => {
             input={<OutlinedInput label="Choose a Place" />}
             onChange={handlePlaceChange}
           >
-            <MenuItem value={'paris'}>Paris</MenuItem>
-            <MenuItem value={'chartes'}>Chartres</MenuItem>
-            <MenuItem value={'nantes'}>Nantes</MenuItem>
-            <MenuItem value={'bordeaux'}>Bordeaux</MenuItem>
-            <MenuItem value={'carcassone'}>Carcassone</MenuItem>
-            <MenuItem value={'canal_du_midi'}>Canal du Midi</MenuItem>
-            <MenuItem value={'marseille'}>Marseille</MenuItem>
-            <MenuItem value={'nimes'}>Nimes</MenuItem>
-            <MenuItem value={'nice'}>Nice</MenuItem>
-            <MenuItem value={'cote_d_azur'}>Cote d'Azur</MenuItem>
-            <MenuItem value={'monaco'}>Monaco</MenuItem>
-            <MenuItem value={'lyon'}>Lyon</MenuItem>
+            { countryString && places[countryString].map(place => {
+              return place;
+            })}
           </Select>
         </FormControl>
       </div>
@@ -111,7 +105,7 @@ const IndexPage = () => {
         )
       }) : 
         isLoading && 
-        <div style={{ height: '70vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <div style={{ height: '65vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
           <CircularProgress color="inherit" size={60} />
         </div> }
       </div>
