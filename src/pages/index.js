@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useState } from 'react'
 import { OutlinedInput, MenuItem, Select, InputLabel, FormControl,
-  Skeleton, CircularProgress } from '@mui/material'
+  Pagination, CircularProgress } from '@mui/material'
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -25,18 +25,24 @@ Storage.configure({
 const IndexPage = () => {
   const [countryString, setCountryString] = useState('');
   const [placeString, setPlaceString] = useState('');
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(20);
+  const [page, setPage] = useState(1);
+  const [pageCount, setPageCount] = useState(1);
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [magnifiedImage, setMagnifiedImage] = useState(null);
 
-  const getPhotoList = async (place) => {
+  const getPhotoList = async (place, page=1) => {
     if (images.length) {
       setImages([])
     }
     setIsLoading(true);
     const list = await Storage.list(`${countryString}/${place}/`);
 
-    const promises = list.map(async(item) => {
+    setPageCount(Math.ceil(list.length / 20));
+
+    const promises = list.slice((20 * (page - 1)), (20 * page)).map(async(item) => {
       const response = await Storage.get(`${item.key}`, {download: true})
       return URL.createObjectURL(response.Body, {type : 'image/jpeg'})
     })
@@ -47,6 +53,16 @@ const IndexPage = () => {
     setImages(data);
     
   }
+
+  const handlePaginationChange = (event, value) => {
+    console.log(value)
+    if (!placeString) return;
+    if (value == page) return;
+
+    setPage(value);
+    getPhotoList(placeString, value);
+  };
+  
 
   const handleCountryChange = (e) => {
     setCountryString(e.target.value);
@@ -115,6 +131,7 @@ const IndexPage = () => {
         <Link to="/using-ssr">Go to "Using SSR"</Link> <br />
         <Link to="/using-dsg">Go to "Using DSG"</Link>
       </p> */}
+      <Pagination page={page} count={pageCount} onChange={handlePaginationChange} />
     </Layout>
   ) 
 }
